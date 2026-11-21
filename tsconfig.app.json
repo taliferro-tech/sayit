@@ -10,7 +10,6 @@
     "src/main.ts"
   ],
   "include": [
-    "src/**/*.d.ts",
-    "../../taliferro-ui/platform/**/*.ts"
+    "src/**/*.d.ts"
   ]
 }
