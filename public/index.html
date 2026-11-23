@@ -752,46 +752,119 @@
       </section>
     </main>
   </div>
-  <!-- The universal footer: taliferro-ui/site-footer-component as plain HTML.
-       Products, company and legal links come from MENU_PRODUCTS / MENU_COMPANY
-       in taliferro-ui/platform/universal-menu.model.ts; keep them in step. -->
-  <footer class="tt-foot">
-    <div class="tt-foot__row tt-foot__app">
-      <a href="/about">About SayIt</a>
-      <a href="/help">Help</a>
-      <a href="/terms">Terms of Use</a>
-    </div>
-    <div class="tt-foot__row">
-      <a class="tt-foot__brand" href="https://taliferro.tech">Taliferro Tech</a>
-      <a href="mailto:support@taliferro.tech">support@taliferro.tech</a>
-      <a href="tel:+14257909986">425.790.9986</a>
-      <span>1424 11th Ave STE 400, Seattle, WA 98122</span>
-    </div>
-    <nav class="tt-foot__row" aria-label="Taliferro Tech products">
-      <a href="https://assistant.16ahead.com">Ask TODD</a>
-      <a href="https://marketing.16ahead.com">Maya</a>
-      <a href="https://find.16ahead.com">Find</a>
-      <a href="https://network.16ahead.com">Network</a>
-      <a href="https://moves.16ahead.com">Moves</a>
-      <a href="https://outreach.16ahead.com">Outreach</a>
-      <a href="https://pulse.16ahead.com">Pulse</a>
-      <a href="https://lead-vault.16ahead.com">Lead Vault</a>
-      <a href="https://social.16ahead.com">Social</a>
-      <a href="https://sayit.16ahead.com">SayIt</a>
-      <a href="https://docs.16ahead.com">Docs</a>
-      <a href="https://emails.16ahead.com">Email Creator</a>
-      <a href="https://signature.16ahead.com">Email Signature</a>
-      <a href="https://images.16ahead.com">Image Creator</a>
-      <a href="https://music.taliferro.com">Music</a>
-    </nav>
-    <div class="tt-foot__row">
-      <a href="https://taliferro.tech/terms">Terms &amp; Conditions</a>
-      <a href="https://taliferro.tech/privacy-rights">Privacy Rights</a>
-      <a href="https://taliferro.tech/privacy">Privacy Policy</a>
-      <a href="https://taliferro.tech/careers">Careers</a>
-      <span>© 2026 Taliferro Tech, LLC</span>
-    </div>
-  </footer>
+  <!-- The 16Ahead footer (design_handoff_16ahead_footer, 2026-11-22): taliferro-ui/site-footer-component
+       rendered as plain HTML, with its styles and a small script for the phone accordions. -->
+  <style>
+    .sf { --sf-bg: #fff; --sf-surface: #f2f3f6; --sf-line: #e4e7ed; --sf-text: #0f1115; --sf-muted: #5a6170; --sf-faint: #9aa2b2;
+      background: var(--sf-bg); color: var(--sf-text); border-top: 1px solid var(--sf-line); font-family: var(--font, "Helvetica Neue", Helvetica, Arial, sans-serif);
+      padding: 56px 64px 0; box-sizing: border-box; width: 100%; margin-top: auto; }
+    .sf *, .sf *::before, .sf *::after { box-sizing: border-box; }
+    .sf a { color: inherit; text-decoration: none; }
+    .sf a:focus-visible, .sf button:focus-visible { outline: 2px solid #2f6bff; outline-offset: 2px; border-radius: 8px; }
+    .sf__ico--d { display: none; }
+    @media (prefers-color-scheme: dark) {
+      :root:not(.light):not([data-theme="light"]) .sf { --sf-bg: #0b0c10; --sf-surface: #16181e; --sf-line: #1f2229; --sf-text: #f2f4f8; --sf-muted: #a3aab8; --sf-faint: #6b7280; }
+      :root:not(.light):not([data-theme="light"]) .sf__ico--l { display: none; }
+      :root:not(.light):not([data-theme="light"]) .sf__ico--d { display: inline-block; }
+    }
+    html.dark .sf, :root[data-theme="dark"] .sf { --sf-bg: #0b0c10; --sf-surface: #16181e; --sf-line: #1f2229; --sf-text: #f2f4f8; --sf-muted: #a3aab8; --sf-faint: #6b7280; }
+    html.dark .sf__ico--l, :root[data-theme="dark"] .sf__ico--l { display: none; }
+    html.dark .sf__ico--d, :root[data-theme="dark"] .sf__ico--d { display: inline-block; }
+
+    .sf__grid { display: grid; grid-template-columns: 300px repeat(4, minmax(0, 1fr)); gap: 40px; max-width: 1280px; margin: 0 auto; }
+    .sf__brand-head { display: flex; align-items: center; gap: 12px; }
+    .sf__brand-head img { width: 40px; height: 40px; }
+    .sf__brand-name { font-size: 24px; font-weight: 700; letter-spacing: -.01em; }
+    .sf__line { margin: 14px 0 0; color: var(--sf-muted); font-size: 15px; line-height: 1.5; }
+    .sf__contacts { display: grid; gap: 14px; margin: 22px 0 0; padding: 0; list-style: none; }
+    .sf__contact { display: flex; align-items: flex-start; gap: 12px; }
+    .sf__tile { flex: 0 0 32px; width: 32px; height: 32px; border-radius: 10px; background: var(--sf-surface); display: grid; place-items: center; color: var(--sf-muted); }
+    .sf__tile svg { width: 16px; height: 16px; }
+    .sf__contact-text { display: grid; gap: 1px; font-size: 15px; line-height: 1.3; }
+    .sf__contact-text small { color: var(--sf-muted); font-size: 12px; }
+    .sf__consult { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; margin-top: 24px; padding: 0 22px; border-radius: 999px;
+      background: #0f1115; color: #fff !important; font-size: 15px; font-weight: 700; }
+    html.dark .sf__consult, :root[data-theme="dark"] .sf__consult { background: #f2f4f8; color: #0f1115 !important; }
+    @media (prefers-color-scheme: dark) { :root:not(.light):not([data-theme="light"]) .sf__consult { background: #f2f4f8; color: #0f1115 !important; } }
+    .sf__consult svg { width: 16px; height: 16px; }
+
+    .sf__head { display: block; width: 100%; padding: 0; border: 0; background: none; color: var(--sf-text); text-align: left; font: inherit; cursor: default; }
+    .sf__title { display: block; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .sf__count, .sf__chev { display: none; }
+    .sf__desc { margin: 6px 0 0; min-height: 36px; color: var(--sf-faint); font-size: 13px; line-height: 1.35; }
+    .sf__list { display: grid; margin: 10px 0 0; padding: 0; list-style: none; }
+    .sf__list a { display: flex; align-items: center; gap: 10px; padding: 7px 0; color: var(--sf-muted); font-size: 15px; }
+    .sf__list a img { width: 22px; height: 22px; transition: transform .15s ease; }
+    .sf__list a:hover, .sf__list a:focus-visible { color: var(--sf-text); font-weight: 700; }
+    .sf__list a:hover img, .sf__list a:focus-visible img { transform: scale(1.08); }
+    .sf__list a .sf__go { display: none; }
+    .sf__company a { display: flex; padding: 7px 0; color: var(--sf-muted); font-size: 15px; }
+    .sf__company a:hover, .sf__company a:focus-visible { color: var(--sf-text); font-weight: 700; }
+    .sf__company-app { display: contents; }
+
+    .sf__phone-contact { display: none; }
+    .sf__bar { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; max-width: 1280px; margin: 48px auto 0; padding: 22px 0 26px; border-top: 1px solid var(--sf-line); color: var(--sf-muted); font-size: 13px; }
+    .sf__legal { display: flex; gap: 24px; flex-wrap: wrap; }
+    .sf__legal a:hover { color: var(--sf-text); }
+    .sf__build { margin-left: auto; color: var(--sf-faint); font: 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+    @media (max-width: 1279px) and (min-width: 1024px) {
+      .sf__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .sf__brand { grid-column: 1 / -1; }
+      .sf__contacts { grid-template-columns: repeat(3, auto); justify-content: start; gap: 14px 32px; }
+    }
+    @media (max-width: 1023px) and (min-width: 768px) {
+      .sf { padding: 40px 32px 0; }
+      .sf__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .sf__brand { grid-column: 1 / -1; }
+      .sf__contacts { grid-template-columns: repeat(3, auto); justify-content: start; gap: 14px 32px; }
+    }
+    @media (max-width: 767px) {
+      .sf { padding: 30px 20px 0; }
+      .sf__grid { display: block; }
+      .sf__contacts { display: none; }
+      .sf__consult { display: flex; width: 100%; height: 52px; margin: 22px 0 8px; }
+      .sf__col { border-top: 1px solid var(--sf-line); }
+      .sf__head { display: flex; align-items: center; gap: 10px; min-height: 60px; cursor: pointer; }
+      .sf__title { font-size: 16px; letter-spacing: 0; text-transform: none; }
+      .sf__count { display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--sf-surface); color: var(--sf-muted); font-size: 13px; font-weight: 600; }
+      .sf__chev { display: grid; place-items: center; width: 32px; height: 32px; margin-left: auto; border-radius: 50%; background: var(--sf-surface); color: var(--sf-text); transition: transform .2s ease; }
+      .sf__chev svg { width: 16px; height: 16px; }
+      .sf__col.is-open .sf__chev { transform: rotate(180deg); }
+      .sf__desc { display: none; }
+      .sf__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .2s ease; }
+      .sf__col.is-open .sf__body { grid-template-rows: 1fr; }
+      .sf__body > * { overflow: hidden; min-height: 0; }
+      .sf__list { margin: 0; }
+      .sf__col.is-open .sf__list, .sf__col.is-open .sf__company { padding-bottom: 8px; }
+      .sf__list a, .sf__company a { min-height: 48px; padding: 0; font-size: 16px; color: var(--sf-text); align-items: center; }
+      .sf__list a img { width: 28px; height: 28px; }
+      .sf__list a .sf__go { display: inline; margin-left: auto; color: var(--sf-faint); font-size: 20px; }
+      .sf__phone-contact { display: block; padding: 20px 0 0; border-top: 1px solid var(--sf-line); }
+      .sf__phone-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .sf__phone-buttons a { display: flex; align-items: center; justify-content: center; gap: 8px; height: 50px; border-radius: 16px; background: var(--sf-surface); font-size: 16px; font-weight: 700; }
+      .sf__phone-buttons svg { width: 16px; height: 16px; }
+      .sf__address { display: flex; gap: 8px; margin-top: 14px; color: var(--sf-muted); font-size: 15px; line-height: 1.4; }
+      .sf__address svg { flex: 0 0 14px; width: 14px; height: 14px; margin-top: 3px; }
+      .sf__bar { display: grid; gap: 14px; margin-top: 20px; padding: 20px 0 28px; }
+      .sf__legal { gap: 8px; }
+      .sf__legal a { display: inline-flex; align-items: center; height: 36px; padding: 0 14px; border-radius: 999px; background: var(--sf-surface); font-weight: 600; }
+      .sf__legal { order: 1; }
+      .sf__copy { order: 2; padding-top: 14px; border-top: 1px solid var(--sf-line); }
+      .sf__build { order: 3; margin: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { .sf__body, .sf__chev, .sf__list a img { transition: none !important; } }
+  </style>
+  <footer aria-label="16Ahead" class="sf"><div class="sf__grid"><section class="sf__brand"><a class="sf__brand-head" href="https://16ahead.com"><img src="/assets/brand/products/png/light/01-16ahead-64.png" alt width="40" height="40" class="sf__ico--l"><img src="/assets/brand/products/png/dark/01-16ahead-64.png" alt width="40" height="40" class="sf__ico--d"><span class="sf__brand-name">16Ahead</span></a><p class="sf__line">Sixteen apps, one login. Ask a question and get the next move for your business.</p><ul class="sf__contacts"><li><a class="sf__contact" href="mailto:support@16ahead.com"><span aria-hidden="true" class="sf__tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span><span class="sf__contact-text">support@16ahead.com<small>Email</small></span></a></li><li><a class="sf__contact" href="tel:+14257909986"><span aria-hidden="true" class="sf__tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span class="sf__contact-text">425.790.9986<small>Phone</small></span></a></li><li><a target="_blank" rel="noopener" class="sf__contact" href="https://maps.google.com/?q=1424%2011th%20Ave%20STE%20400%2C%20Seattle%2C%20WA%2098122"><span aria-hidden="true" class="sf__tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="sf__contact-text">1424 11th Ave STE 400<small>Seattle, WA 98122</small></span></a></li></ul><a class="sf__consult" href="mailto:info@taliferro.tech?subject=Consultation&amp;body=Hi%20Taliferro%20Tech%2C%0A%0AOur%20business%3A%20%0AWork%20we%20want%20off%20our%20plate%3A%20%0ATools%20we%20use%20today%3A%20%0A"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> Book a consultation </a></section><section class="sf__col"><button type="button" class="sf__head" aria-expanded="false" aria-controls="sf-intelligence"><span class="sf__title">Intelligence</span><span class="sf__count">5 apps</span><span aria-hidden="true" class="sf__chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><p class="sf__desc">Ask, plan and decide</p><div class="sf__body" id="sf-intelligence"><ul class="sf__list"><li><a href="https://assistant.16ahead.com"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/02-general-assistant-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/02-general-assistant-64.png"><span>General Assistant</span><span aria-hidden="true" class="sf__go">›</span></a></li><li><a href="https://marketing.16ahead.com"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/03-marketing-assistant-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/03-marketing-assistant-64.png"><span>Marketing Assistant</span><span aria-hidden="true" class="sf__go">›</span></a></li><li><a href="https://find.16ahead.com"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/11-find-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/11-find-64.png"><span>Find</span><span aria-hidden="true" class="sf__go">›</span></a></li><li><a href="https://moves.16ahead.com"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/06-moves-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/06-moves-64.png"><span>Moves</span><span aria-hidden="true" class="sf__go">›</span></a></li><li><a href="https://pulse.16ahead.com"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/08-pulse-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/08-pulse-64.png"><span>Pulse</span><span aria-hidden="true" class="sf__go">›</span></a></li></ul></div></section><section class="sf__col"><button type="button" class="sf__head" aria-expanded="false" aria-controls="sf-grow"><span class="sf__title">Grow</span><span class="sf__count">6 apps</span><span aria-hidden="true" class="sf__chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><p class="sf__desc">Relationships, leads and outreach</p><div class="sf__body" id="sf-grow"><ul class="sf__list"><li><a href="https://network.16ahead.com"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/04-network-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/04-network-64.png"><span>Network</span><span aria-hidden="true" class="sf__go">›</span></a></li><li><a href="https://lead-vault.16ahead.com"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/10-lead-vault-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/10-lead-vault-64.png"><span>Lead Vault</span><span aria-hidden="true" class="sf__go">›</span></a></li><li><a href="https://outreach.16ahead.com"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/05-outreach-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/05-outreach-64.png"><span>Outreach</span><span aria-hidden="true" class="sf__go">›</span></a></li><li><a href="https://social.16ahead.com"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/09-social-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/09-social-64.png"><span>Social</span><span aria-hidden="true" class="sf__go">›</span></a></li><li><a href="https://sayit.16ahead.com"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/12-sayit-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/12-sayit-64.png"><span>SayIt</span><span aria-hidden="true" class="sf__go">›</span></a></li><li><a href="https://16ahead.store"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/16-store-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/16-store-64.png"><span>Store</span><span aria-hidden="true" class="sf__go">›</span></a></li></ul></div></section><section class="sf__col"><button type="button" class="sf__head" aria-expanded="false" aria-controls="sf-create"><span class="sf__title">Create</span><span class="sf__count">4 apps</span><span aria-hidden="true" class="sf__chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><p class="sf__desc">Documents, email and images</p><div class="sf__body" id="sf-create"><ul class="sf__list"><li><a href="https://docs.16ahead.com"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/07-docs-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/07-docs-64.png"><span>Docs</span><span aria-hidden="true" class="sf__go">›</span></a></li><li><a href="https://emails.16ahead.com"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/13-email-creator-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/13-email-creator-64.png"><span>Email Creator</span><span aria-hidden="true" class="sf__go">›</span></a></li><li><a href="https://signature.16ahead.com"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/15-email-signature-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/15-email-signature-64.png"><span>Email Signature</span><span aria-hidden="true" class="sf__go">›</span></a></li><li><a href="https://images.16ahead.com"><img alt width="22" height="22" loading="lazy" class="sf__ico--l" src="/assets/brand/products/png/light/14-image-creator-64.png"><img alt width="22" height="22" loading="lazy" class="sf__ico--d" src="/assets/brand/products/png/dark/14-image-creator-64.png"><span>Image Creator</span><span aria-hidden="true" class="sf__go">›</span></a></li></ul></div></section><section class="sf__col"><button type="button" aria-controls="sf-company" class="sf__head" aria-expanded="false"><span class="sf__title">Company</span><span aria-hidden="true" class="sf__chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><p class="sf__desc">16Ahead and Taliferro Tech</p><div id="sf-company" class="sf__body"><nav aria-label="Company" class="sf__company"><a href="https://16ahead.com">16Ahead home</a><span class="sf__company-app"><a href="/about">About SayIt</a><a href="/help">Help</a><a href="/terms">Terms of Use</a></span><a href="https://taliferro.tech/careers">Careers</a></nav></div></section></div><div class="sf__phone-contact"><div class="sf__phone-buttons"><a href="mailto:support@16ahead.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>Email support</a><a href="tel:+14257909986"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call us</a></div><a target="_blank" rel="noopener" class="sf__address" href="https://maps.google.com/?q=1424%2011th%20Ave%20STE%20400%2C%20Seattle%2C%20WA%2098122"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>1424 11th Ave STE 400<br>Seattle, WA 98122</span></a></div><div class="sf__bar"><span class="sf__copy">© 2026 Taliferro Tech, LLC</span><nav aria-label="Legal" class="sf__legal"><a href="https://16ahead.com/terms">Terms &amp; Conditions</a><a href="https://16ahead.com/privacy-rights">Privacy Rights</a><a href="https://16ahead.com/privacy">Privacy Policy</a></nav></div></footer>
+  <script>
+    document.querySelectorAll('.sf__head').forEach(function (head) {
+      head.addEventListener('click', function () {
+        var col = head.closest('.sf__col'), open = !col.classList.contains('is-open');
+        document.querySelectorAll('.sf__col.is-open').forEach(function (c) { c.classList.remove('is-open'); c.querySelector('.sf__head').setAttribute('aria-expanded', 'false'); });
+        if (open) { col.classList.add('is-open'); head.setAttribute('aria-expanded', 'true'); }
+      });
+    });
+  </script>
   <script>
     // The universal menu (taliferro-ui/static); same items as the app's platform-menu.config.ts.
     window.TT_MENU = {
