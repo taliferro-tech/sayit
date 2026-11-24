@@ -21,6 +21,7 @@ export class AppComponent {
   readonly isLoggedIn$ = this.authService.isLoggedIn();
   readonly userName$ = this.authService.getUser().pipe( map( user => user?.displayName || '' ) );
   readonly userEmail$ = this.authService.getUser().pipe( map( user => user?.email || '' ) );
+  readonly userId$ = this.authService.getUser().pipe( map( user => user?.uid || '' ) );
 
   @ViewChild( PlatformMenuComponent ) private platformMenu?: PlatformMenuComponent;
 
